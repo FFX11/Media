@@ -1,0 +1,44 @@
+﻿
+@inherits LayoutComponentBase
+@inject IJSRuntime JS
+
+<div class="d-flex flex-column h-100 @GetThemeClass()">
+    <!---Top Nav--->
+    <TopNavMenu OnDarkModeToggle="ToggleDarkMode" />
+    <!-- Main -->
+    <main class="flex-grow-1">
+        @Body
+    </main>
+    <!-- Footer-->
+    <footer class="flex-shrink-0">
+        <Footer />
+    </footer>
+</div>
+
+@code {
+    private bool isDarkMode = false;
+
+    private string GetThemeClass() => $"theme-{(isDarkMode ? "dark" : "light")}";
+
+    private async Task ApplyTheme()
+    {
+        var themeClass = GetThemeClass();
+        
+        // Invoke JavaScript function to apply theme to the body
+        await JS.InvokeVoidAsync("applyTheme", themeClass, isDarkMode);
+        
+    }
+
+    private async void ToggleDarkMode()
+    {
+        // Toggle the dark mode and apply the theme
+        isDarkMode = !isDarkMode;
+        await ApplyTheme();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Apply the initial theme when the component is initialized
+        await ApplyTheme();
+    }
+}

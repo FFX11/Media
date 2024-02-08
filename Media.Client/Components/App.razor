@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    
+
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- Devicons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+
+    <!-- Google Fonts - Monsterrat, Bebas Neue -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro&family=Literata">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.17.0/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Themes CSS -->
+    <link rel="stylesheet" href="css/themes.css" />
+
+    <!-- Blazor CSS -->
+    <link rel="stylesheet" href="app.css" />
+
+    <!-- Favicon -->
+    <link href="favicon.ico" rel="icon" type="image/x-icon" />
+    <HeadOutlet />
+</head>
+
+<body>
+    <Routes @rendermode="new InteractiveServerRenderMode(prerender: false)" />
+
+    <!-- Vanilla Tilt JS -->
+    <script src="/js/vanilla-tilt.min.js"></script>
+    <!-- Useful JS-->
+    <script src="/js/site.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="_framework/blazor.web.js"></script>
+</body>
+
+</html>

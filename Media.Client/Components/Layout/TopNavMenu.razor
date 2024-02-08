@@ -1,0 +1,45 @@
+﻿<!-- TopNavMenu.razor -->
+@rendermode InteractiveAuto
+
+<nav class="navbar navbar-expand-lg navStyle" data-bs-theme="dark">
+    <div class="container-xxl">
+        <a href="/" class="me-3">
+            <img src="/images/coolcamel.png" class="home-logo" height="50" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarBM" aria-expanded="false" aria-label="toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarBM">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="/" Match="NavLinkMatch.All">
+                        <i class="bi bi-home"></i>
+                        Home
+                    </NavLink>
+                </li>
+            </ul>
+            <!-- Dark mode toggle button -->
+            <button class="btn bg-opacity-75 bg-warning" @onclick="ToggleDarkMode">
+                <img src="/images/dark-mode-icon.png" style="height:20px;" alt="Dark Mode" />
+            </button>
+        </div>
+    </div>
+</nav>
+@* <nav class="navbar navStyle" style="background-color:darkslategrey" >
+    <div class="container">
+        <a class="" href="#">Menu Item 1</a>
+        <a class="" href="#">Menu Item 2</a>
+    </div>
+</nav> *@
+
+@code {
+    [Parameter]
+    public EventCallback<bool> OnDarkModeToggle { get; set; }
+    private bool isDarkMode = false;
+    private void ToggleDarkMode()
+    {
+        // Toggle the dark mode and notify the parent component
+        isDarkMode = !isDarkMode;
+        OnDarkModeToggle.InvokeAsync(isDarkMode);
+    }
+}

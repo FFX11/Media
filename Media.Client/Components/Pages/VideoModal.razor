@@ -1,0 +1,43 @@
+﻿<!-- VideoModal.razor -->
+@if (IsModalVisible)
+{
+    <div class="modal-wrapper">
+        <div class="dark-overlay" @onclick="CloseModal"></div>
+        <div class="@modalClass">
+            <div class="modal fade show" tabindex="-1" style="display: block;">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" aria-label="Close" @onclick="CloseModal"></button>
+                        </div>
+                        <div class="modal-body">
+                            @ChildContent
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public bool IsModalVisible { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> IsModalVisibleChanged { get; set; }
+
+    [Parameter]
+    public string Title { get; set; } = string.Empty;
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    private string modalClass => IsModalVisible ? "modal-visible" : "";
+
+    private async Task CloseModal()
+    {
+        IsModalVisible = false;
+        await IsModalVisibleChanged.InvokeAsync(IsModalVisible);
+    }
+}
